@@ -7,6 +7,7 @@
 %
 %  Soon more functions to be implemented. For now enjoy the choices of multivariate linear regression through normal equation and gradient descent 
 %  MAPE is calculated after every parameters fitting to see the value of your model 
+%  Send me an email to alouisos@gmail.com for comments, questions or suggestions
 
 % ---------------------- Main COde  ----------------------
 
@@ -50,7 +51,8 @@ if method == 1,
 
 
 % ========================Calculating MAPE =================================================
-test_data = dlmread("test_dataset_500.csv", ",", 1, 0); 
+name2 = input ("Enter the name of your test file. \n warning: no spaces after the filename: ", "s");  % enter the name of your file without any spaces at the end
+test_data = dlmread(name2, separator, not_include, 0); 
 test_data = test_data(:, first_column:last_column); 
 inputs = [ones(length(test_data),1) test_data(:, 1:(last_column-first_column))];
 y = test_data(:, size(test_data, 2)); 
@@ -66,7 +68,8 @@ elseif method == 2,
 	[X, X_old] = featureNormalize(X);
 	gradientDescent; 
 % ========================Calculating MAPE =================================================
-test_data = dlmread("test_dataset_500.csv", ",", 1, 0); 
+name2 = input ("Enter the name of your test file. \n warning: no spaces after the filename: ", "s");  % enter the name of your file without any spaces at the end
+test_data = dlmread(name2, separator, not_include, 0); 
 test_data = test_data(:, first_column:last_column); 
 inputs = studentize(test_data(:, 1:size(test_data, 2)-1)); 
 inputs = [ones(length(inputs),1) inputs];
@@ -83,8 +86,8 @@ for i = 1:(last_column-first_column),
 end; 
 	theta = normalEqn(X, y)
 % ========================Calculating MAPE =================================================
-
-test_data = dlmread("test_dataset_500.csv", ",", 1, 0); 
+name2 = input ("Enter the name of your test file. \n warning: no spaces after the filename: ", "s");  % enter the name of your file without any spaces at the end
+test_data = dlmread(name2, separator, not_include, 0); 
 test_data = test_data(:, first_column:last_column); 
 for i = 1:(last_column-first_column), 
 	test_data(:,i) = test_data(:,i).^i;	
@@ -110,8 +113,9 @@ end;
 	[X, X_old] = featureNormalize(X);
 	gradientDescent; 
 % ========================Calculating MAPE =================================================
+name2 = input ("Enter the name of your test file. \n warning: no spaces after the filename: ", "s");  % enter the name of your file without any spaces at the end
+test_data = dlmread(name2, separator, not_include, 0); 
 
-test_data = dlmread("test_dataset_500.csv", ",", 1, 0); 
 test_data = test_data(:, first_column:last_column); 
 for i = 1:(last_column-first_column), 
 	test_data(:,i) = test_data(:,i).^i;	
